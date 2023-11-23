@@ -1,0 +1,29 @@
+<div class=" mb-3">
+    <!-- <h1><b>Products</b></h1> -->
+    <!-- <div *ngIf="menuType==='default'" class="form-group searchOut"> -->
+        <div class="form-group searchOut">
+        <input type="text" class="form-control searchInput" placeholder="Search Products" [(ngModel)]="searchStr" name="searchStr">
+        <button class="btn btn-success" (click)="searchFn()">Search</button>
+    </div>
+    <div class="row mb-3">
+        <ng-container *ngFor="let products of products async let i = index">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{products.productImage}}" style="width: 18rem;height:15rem;" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title"><b>{{products.prName|uppercase}}</b></h3>
+                        <p class="card-text">{{products.price|currency:'INR':'symbol-narrow'}} </p> 
+                        <p class="card-text">{{products.description}} &nbsp;&nbsp;&nbsp;&nbsp; Availabel Quantity&nbsp;&nbsp; <b>{{products.quantity}}</b></p> 
+                        <!-- Quantity
+                         <input type="number"  id="qty" style="width: 20%;" >
+                        <a (click)="addToCart(products,getQuantity())" class="btn">Add to cart</a> -->
+                        Quantity <input type="number" [id]="'qty-' + i" style="width: 20%;">
+                        <a (click)="addToCart(products, getQuantity(i))" class="btn">Add to cart</a>
+               
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="(i+1)%3===0" class="w-100"></div>
+        </ng-container>
+    </div>
+</div>

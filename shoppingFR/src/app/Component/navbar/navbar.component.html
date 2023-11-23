@@ -1,0 +1,33 @@
+<nav *ngIf="nav.visible" class="navbar navbar-expand bg-dark text-light">
+    <div class="container">
+        <div class="navbar-header nav-item">
+            
+            <a routerLink="/home"><b> <img src="https://media.istockphoto.com/id/1184670036/vector/shopping-cart-line-icon-fast-buy-vector-logo.jpg?s=1024x1024&w=is&k=20&c=EpYUGc5aTBL3_P5_es8d-FAwowjFnBGb5YVpfHfzl_U=" width="35" height="35" class="d-inline-block" alt="Shopping Cart Icon">
+          <span> Shopping</span> <span> Cart </span></b></a>
+        </div>
+      
+        <div class="collapse navbar-collapse navbar-right justify-content-end" id="navbarNavAltMarkup">
+            <div [ngSwitch]="menuType" class="navbar-nav text-light">
+                <ul *ngSwitchCase=" 'default' " class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a style="margin-right:20px" routerLink="/products">
+                            <mat-icon>home</mat-icon>Home</a>
+                    </li>
+                    <li *ngIf="!accountService.isLoggedIn()" class="nav-item active">
+                        <a style="margin-right:20px" routerLink="/login">
+                            <mat-icon>account_circle</mat-icon>Login </a>
+                    </li>
+                    <li *ngIf="accountService.isLoggedIn() && accountService.getRole()!='Admin'" class="nav-item">
+                        <a routerLink="/cart">
+                            <mat-icon>shopping_cart</mat-icon>Cart</a>
+                    </li>
+                    <li *ngIf="accountService.isLoggedIn()" class="nav-item">
+
+                        <a (click)="onLogout()" id="logout" class="text-light">&nbsp;&nbsp;&nbsp;
+                            <mat-icon>power_settings_new</mat-icon>LogOut</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

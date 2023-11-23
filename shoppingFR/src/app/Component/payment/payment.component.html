@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h2>Shipping Details</h2>
+        <!-- <form method="POST">
+            
+            <h4>Shipping Details</h4>
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" placeholder="Full Name" required class="name">
+                    <i class="fa fa-user icon"></i>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" placeholder="Address" required class="address">
+                    <i class="fa fa-home icon"></i>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="tel" placeholder="Mobile No" required class="contact">
+                    <i class="fa fa-mobile icon"></i>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="email" placeholder="E-mail" required class="mail">
+                    <i class="fa fa-envelope icon"></i>
+                </div>
+            </div>
+           
+            <div class="input-group">
+                <div class="input-box">
+                    <button type="submit" routerLink="/order-successful">ORDER NOW</button>
+                </div>
+            </div>
+        </form> -->
+        <form [formGroup]="SignUpform" (ngSubmit)="onSubmit()">
+            <br>
+            <!-- User Name input -->
+            <div class="form-group">
+                <div *ngIf="username?.touched && username?.invalid">
+                    <span>Username is required.</span></div>
+                <input formControlName="username" type="text" id="username" class="form-control form-control-lg name" placeholder="Full Name" />
+                <label class="form-label" for="form3Example3"></label>
+
+            </div>
+            <!-- Address input -->
+            <div class="form-group">
+               
+                <input formControlName="address" type="text" id="address" class="form-control form-control-lg address" placeholder="Address" />
+                <label class="form-label" for="form3Example3"></label>
+
+            </div>
+           
+           
+             <!-- emailid input -->
+             <div class="form-group">
+                <div *ngIf="email?.invalid && email?.touched">
+                    <span>Emailid is invalid.</span></div>
+                   
+                   <input formControlName="email" type="email" id="email" class="form-control form-control-lg mail" placeholder="E-Mail" /> 
+                <label class="form-label" for="form3Example3"></label>
+
+            </div>
+
+            <div class="form-group">
+                <div class="input-box">
+                    <h4>Payment Details</h4>
+                    <input type="radio" name="pay" id="bc1" checked class="radio" (click)="paymentOptionClicked(1)">
+                    <label for="bc1"><span><i class="fa fa-credit-card"></i> Debit Card</span></label>
+                    <input type="radio" name="pay" id="bc2" class="radio" (click)="paymentOptionClicked(2)">
+                    <label for="bc2"><span> Pay on delivery </span></label>
+                </div>
+            </div>
+            <div class="input-group">
+                
+                <div class="input-box" *ngIf="!payOnDeliverySelected">
+                    <input type="tel" placeholder="Amount" class="name" value="{{grandTotal()}}" disabled>
+                    <i class="fa fa-user icon"></i>
+                </div>
+            </div>
+            <div class="input-group" *ngIf="!payOnDeliverySelected">
+                <div *ngIf="cardnumber?.invalid && cardnumber?.touched">
+                    <span>Card Number is invalid.</span></div>
+                <div class="input-box">
+                    <input type="tel" placeholder="Card Number" class="name">
+                    <i class="fa fa-user icon"></i>
+                </div>
+            </div>
+            <div class="input-group" *ngIf="!payOnDeliverySelected">
+                <div *ngIf="cvv?.invalid && cvv?.touched">
+                    <span>cvv is invalid.</span></div>
+                <div class="input-box">
+                    <input type="tel" placeholder="Card CVV" class="name">
+                    <i class="fa fa-user icon"></i>
+                </div>
+                <div class="input-box" *ngIf="!payOnDeliverySelected">
+                    <select>
+                        <option>exp month</option>
+                        <option>jan</option>
+                        <option>feb</option>
+                        <option>march</option>
+                        <option>april</option>
+                        <option>may</option>
+                        <option>june</option>
+                        <option>july</option>
+                        <option>aug</option>
+                        <option>sept</option>
+                        <option>oct</option>
+                        <option>nov</option>
+                        <option>dec</option>
+                    </select>
+                    <select>
+                        <option>exp year</option>
+                        <option>2020</option>
+                        <option>2021</option>
+                        <option>2022</option>
+                        <option>2023</option>
+                        <option>2024</option>
+                        <option>2025</option>
+                        <option>2026</option>
+                    </select>
+                </div>
+            </div>
+           
+            <div class="text-center text-lg-start mt-4 pt-2 ">
+                <button type="submit" class="btn btn-lg" routerLink="/order-successful" style="padding-left: 2.5rem; padding-right: 2.5rem;">Order Now</button>
+
+
+                <!-- <button type="submit" class="btn btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Order Now</button> -->
+
+            </div>
+            
+
+        </form>
+    </div>
+</body>
+
+</html>

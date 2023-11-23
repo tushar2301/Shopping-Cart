@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="banner_image">
+        <div class="inner_banner_image">
+           <div class="banner_content">
+                <h1>Order Placed Successfully!!!</h1>
+            </div>
+        </div>
+    </div>
+    <table id="purchaseOrderDiv" class="table table-striped" aria-labelledby="tablelabel">
+        <thead class="thead-dark">
+
+          
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Image</th>
+            <th scope="col">Product Quantity</th>
+            <th scope="col"> Total Price</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let od of order">
+
+               
+                <td>{{od.prName}}</td>
+                <td> <img src='{{od.productImage}}' width="50" height="50"> </td>
+                <td> {{ od.quantity }} </td>
+                <td>{{od.price*od.quantity| currency :'INR'}}</td>
+            </tr>
+            <tr>
+                <td colspan="1"></td>
+                <td> Total Amount : </td>
+                <td>{{grandTotal() | currency :'INR'}}</td>
+            </tr>
+            <!-- <button class="btn-success">Place Order</button> -->
+
+        </tbody>
+    </table>
+    <div class="space"></div>
+    <button (click)="printPurchaseOrder()" style="margin: 50px; padding: 10px" type="button" class="btn btn-primary" style="background-color:rgb(0, 90, 0);">Download Bill</button>
+</div>

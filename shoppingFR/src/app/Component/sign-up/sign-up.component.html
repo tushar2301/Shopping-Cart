@@ -1,0 +1,52 @@
+<section class="vh-75">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src=".\assets\Image\Logo.png" class="img-fluid" alt="Sample image" style="width: 650px;height: 200px;">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form [formGroup]="SignUpform" (ngSubmit)="onSubmit()">
+                    <br>
+                    <!-- User Name input -->
+                    <div class="form-group">
+                        <div *ngIf="username?.touched && username?.invalid">
+                            <span>Username is required.</span></div>
+                        <input formControlName="username" type="text" id="username" class="form-control form-control-lg" placeholder="User  Name" />
+                        <label class="form-label" for="form3Example3"></label>
+
+                    </div>
+                    <!-- emailid input -->
+                    <div class="form-group">
+                        <div *ngIf="email?.invalid && email?.touched">
+                            <span>Emailid is invalid.</span></div>
+                        <input formControlName="email" type="email" id="email" class="form-control form-control-lg" placeholder="Enter a valid emailid address" />
+                        <label class="form-label" for="form3Example3"></label>
+
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-group ">
+                        <div *ngIf="password?.touched && password?.invalid">
+                            <span>Password is required.</span></div>
+                        <input formControlName="password" type="Password" id="password" class="form-control form-control-lg" placeholder="Enter password" />
+                        <label class="form-label" for="form3Example4"></label>
+                    </div>
+                    <div class="form-group">
+                        <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid">
+                          <span>Confirm Password is required.</span>
+                        </div>
+                        <div *ngIf="password?.value !== confirmPassword?.value && confirmPassword?.touched">
+                          <span>Passwords do not match.</span>
+                        </div>
+                        <input formControlName="confirmPassword" type="password" id="confirmPassword" class="form-control form-control-lg" placeholder="Confirm password" />
+                        <label class="form-label" for="form3Example5"></label>
+                      </div>
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" [disabled]="!SignUpform.valid">Register</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
